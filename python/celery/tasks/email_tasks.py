@@ -2,11 +2,14 @@ from __future__ import annotations
 
 import json
 from datetime import datetime, timezone
-from typing import Mapping
+from importlib import import_module
+from typing import Any
 
-from app import app  # type: ignore[import-not-found]
-from database import session_scope  # type: ignore[import-not-found]
-from models import EmailLog, Job  # type: ignore[import-not-found]
+app = import_module("app").app
+session_scope = import_module("database").session_scope
+models = import_module("models")
+EmailLog = models.EmailLog
+Job = models.Job
 
 
 def _start_job(task_name: str) -> int:
@@ -17,7 +20,7 @@ def _start_job(task_name: str) -> int:
         return job.id
 
 
-def _finish_job(job_id: int, status: str, payload: Mapping[str, object]) -> None:
+def _finish_job(job_id: int, status: str, payload: dict[str, Any]) -> None:
     with session_scope() as session:
         job = session.get(Job, job_id)
         if job is None:
@@ -34,7 +37,7 @@ def send_notification(
     subject: str,
     message: str,
     simulate_transient_error: bool = False,
-) -> dict[str, object]:
+) -> dict[str, Any]:
     job_id = _start_job("send_notification")
 
     try:

@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from celery import Celery
+import celery  # pyright: ignore[reportMissingImports]
 
 BROKER_URL = "redis://localhost:6379/0"
 DATABASE_URL = "cubrid+pycubrid://dba@localhost:33000/testdb"
 
-app = Celery(
+app = getattr(celery, "Celery")(
     "cubrid_cookbook_celery",
     broker=BROKER_URL,
     backend=f"db+{DATABASE_URL}",

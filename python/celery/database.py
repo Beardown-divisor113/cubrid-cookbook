@@ -1,5 +1,4 @@
 from __future__ import annotations
-# pyright: reportMissingImports=false, reportImplicitRelativeImport=false
 
 from contextlib import contextmanager
 from collections.abc import Iterator
@@ -26,7 +25,5 @@ def session_scope() -> Iterator[Session]:
         session.close()
 
 
-def init_db() -> None:
-    from models import Base
-
-    Base.metadata.create_all(bind=engine)
+def init_db(metadata) -> None:
+    metadata.create_all(bind=engine)

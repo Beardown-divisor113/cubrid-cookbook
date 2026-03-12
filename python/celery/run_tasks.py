@@ -2,18 +2,26 @@ from __future__ import annotations
 
 import argparse
 from decimal import Decimal
+from importlib import import_module
 
-from celery import chain  # type: ignore[import-not-found]
 from sqlalchemy import func, select  # type: ignore[import-not-found]
 
-from database import init_db, session_scope  # type: ignore[import-not-found]
-from models import Job, SalesRecord  # type: ignore[import-not-found]
-from tasks.data_tasks import (  # type: ignore[import-not-found]
-    aggregate_sales,
-    cleanup_old_records,
-    generate_report,
-)
-from tasks.email_tasks import batch_email, send_notification  # type: ignore[import-not-found]
+app = import_module("app").app
+database = import_module("database")
+models = import_module("models")
+data_tasks = import_module("tasks.data_tasks")
+email_tasks = import_module("tasks.email_tasks")
+
+init_db = database.init_db
+session_scope = database.session_scope
+Base = models.Base
+Job = models.Job
+SalesRecord = models.SalesRecord
+aggregate_sales = data_tasks.aggregate_sales
+generate_report = data_tasks.generate_report
+cleanup_old_records = data_tasks.cleanup_old_records
+send_notification = email_tasks.send_notification
+batch_email = email_tasks.batch_email
 
 
 def seed_sales_data() -> None:
@@ -48,10 +56,9 @@ def print_recent_jobs(limit: int = 10) -> None:
 def run_standalone() -> None:
     print("Running in standalone mode (no Redis required)...")
 
-    chain_result = chain(
-        aggregate_sales.s(),
-        generate_report.s("standalone-sales-report"),
-    ).apply()
+    chain_result = (app.signature("tasks.aggregate_sales") | app.signature(
+        "tasks.generate_report", args=["standalone-sales-report"]
+    )).apply()
     print(f"Chained result: {chain_result.get()}")
 
     send_result = send_notification.apply(
@@ -80,10 +87,9 @@ def run_standalone() -> None:
 def run_async() -> None:
     print("Running in async mode (Redis broker + Celery worker required)...")
 
-    chained_async_result = chain(
-        aggregate_sales.s(),
-        generate_report.s("async-sales-report"),
-    ).apply_async()
+    chained_async_result = (app.signature("tasks.aggregate_sales") | app.signature(
+        "tasks.generate_report", args=["async-sales-report"]
+    )).apply_async()
     print(f"Submitted chain task id: {chained_async_result.id}")
 
     send_async_result = send_notification.delay(
@@ -120,7 +126,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    init_db()
+    init_db(Base.metadata)
     seed_sales_data()
 
     if args.standalone:

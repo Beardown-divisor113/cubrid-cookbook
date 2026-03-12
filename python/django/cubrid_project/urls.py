@@ -9,8 +9,10 @@ django_urls = import_module(".".join(["django", "urls"]))
 
 include = cast(Callable[[str], object], django_urls.include)
 path = cast(Callable[..., object], django_urls.path)
+admin_site = cast(object, getattr(django_admin, "site"))
+admin_urls = cast(object, getattr(admin_site, "urls"))
 
 urlpatterns = [
-    path("admin/", django_admin.site.urls),
+    path("admin/", admin_urls),
     path("", include("cookbook.urls")),
 ]

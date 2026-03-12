@@ -1,15 +1,19 @@
 from __future__ import annotations
 
 import json
+from importlib import import_module
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
-from typing import Mapping
+from typing import Any
 
 from sqlalchemy import delete, func, select  # type: ignore[import-not-found]
 
-from app import app  # type: ignore[import-not-found]
-from database import session_scope  # type: ignore[import-not-found]
-from models import Job, Report, SalesRecord  # type: ignore[import-not-found]
+app = import_module("app").app
+session_scope = import_module("database").session_scope
+models = import_module("models")
+Job = models.Job
+Report = models.Report
+SalesRecord = models.SalesRecord
 
 
 def _start_job(task_name: str) -> int:
@@ -20,7 +24,7 @@ def _start_job(task_name: str) -> int:
         return job.id
 
 
-def _finish_job(job_id: int, status: str, payload: Mapping[str, object]) -> None:
+def _finish_job(job_id: int, status: str, payload: dict[str, Any]) -> None:
     with session_scope() as session:
         job = session.get(Job, job_id)
         if job is None:
@@ -33,7 +37,7 @@ def _finish_job(job_id: int, status: str, payload: Mapping[str, object]) -> None
 @app.task(name="tasks.aggregate_sales")
 def aggregate_sales(
     start_date: str | None = None, end_date: str | None = None
-) -> dict[str, object]:
+) -> dict[str, Any]:
     job_id = _start_job("aggregate_sales")
     start_dt = datetime.fromisoformat(start_date) if start_date else None
     end_dt = datetime.fromisoformat(end_date) if end_date else None
@@ -65,8 +69,8 @@ def aggregate_sales(
 
 @app.task(name="tasks.generate_report")
 def generate_report(
-    aggregation: dict[str, object], report_name: str = "sales-report"
-) -> dict[str, object]:
+    aggregation: dict[str, Any], report_name: str = "sales-report"
+) -> dict[str, Any]:
     job_id = _start_job("generate_report")
     report_payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -92,12 +96,20 @@ def cleanup_old_records(days: int = 30) -> dict[str, int]:
     threshold = datetime.now(timezone.utc) - timedelta(days=days)
 
     with session_scope() as session:
-        deleted_jobs = session.execute(
-            delete(Job).where(Job.completed_at.is_not(None)).where(Job.completed_at < threshold)
-        ).rowcount
-        deleted_reports = session.execute(
-            delete(Report).where(Report.created_at < threshold)
-        ).rowcount
+        old_jobs = session.execute(
+            select(Job.id).where(Job.completed_at.is_not(None)).where(Job.completed_at < threshold)
+        ).scalars().all()
+        old_reports = session.execute(
+            select(Report.id).where(Report.created_at < threshold)
+        ).scalars().all()
+
+        deleted_jobs = len(old_jobs)
+        deleted_reports = len(old_reports)
+
+        if old_jobs:
+            session.execute(delete(Job).where(Job.id.in_(old_jobs)))
+        if old_reports:
+            session.execute(delete(Report).where(Report.id.in_(old_reports)))
 
     result = {
         "deleted_jobs": int(deleted_jobs or 0),
