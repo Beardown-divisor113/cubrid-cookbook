@@ -6,8 +6,7 @@
 // - Multiple statements within a single transaction
 
 import { createClient } from "cubrid-client";
-import { drizzle, cubridTable, int, varchar, sql, eq } from "drizzle-cubrid";
-import { double as doubleCol } from "drizzle-orm/mysql-core";
+import { drizzle, cubridTable, int, varchar, double as doubleCol, sql, eq } from "drizzle-cubrid";
 
 // --- Schema ---
 const cookbookAccounts = cubridTable("cookbook_accounts", {

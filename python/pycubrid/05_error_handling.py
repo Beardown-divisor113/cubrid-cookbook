@@ -72,8 +72,8 @@ def connection_error_example() -> None:
 
     # Wrong port
     try:
-        pycubrid.connect(host="localhost", port=99999, database="testdb")
-    except (pycubrid.OperationalError, pycubrid.InterfaceError, OSError) as e:
+        pycubrid.connect(host="localhost", port=44444, database="testdb")
+    except (pycubrid.OperationalError, pycubrid.InterfaceError, OSError, ConnectionRefusedError) as e:
         print(f"  ✓ Caught connection error (bad port): {type(e).__name__}: {e}")
 
 

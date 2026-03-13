@@ -1,24 +1,17 @@
 // 04_custom_types.js — CUBRID-specific types with Drizzle ORM.
 //
 // Demonstrates:
-// - SET, MULTISET, SEQUENCE collection types
-// - MONETARY type
-// - Schema definition with custom types
+// - SET, MULTISET, SEQUENCE collection types in DDL
 // - Insert and query with collection data
+// - Filtering with the IN operator on SET columns
+// - Collection modification (add/remove elements)
+//
+// NOTE: node-cubrid does not fully decode collection-typed columns in SELECT
+// results yet. This example inserts collection data using raw SQL literals
+// and queries scalar columns while filtering on collections.
 
 import { createClient } from "cubrid-client";
-import { drizzle, cubridTable, int, varchar, sql } from "drizzle-cubrid";
-import { set, multiset, sequence, monetary } from "drizzle-cubrid";
-
-// --- Schema ---
-const cookbookProducts = cubridTable("cookbook_products", {
-  id: int("id").primaryKey().autoincrement(),
-  name: varchar("name", { length: 100 }).notNull(),
-  tags: set("tags", { type: "VARCHAR", length: 50 }),
-  categories: multiset("categories", { type: "VARCHAR", length: 50 }),
-  rankings: sequence("rankings", { type: "INTEGER" }),
-  price: monetary("price"),
-});
+import { drizzle, sql } from "drizzle-cubrid";
 
 const DB_CONFIG = {
   host: "localhost",
@@ -37,7 +30,7 @@ async function setup(db) {
       tags       SET(VARCHAR(50)),
       categories MULTISET(VARCHAR(50)),
       rankings   SEQUENCE(INTEGER),
-      price      MONETARY
+      price      DOUBLE
     )
   `);
   console.log("✓ Created table 'cookbook_products'");
@@ -65,29 +58,58 @@ async function insertProducts(db) {
 
 async function queryProducts(db) {
   console.log("\n=== All Products ===");
-  const rows = await db
-    .select()
-    .from(cookbookProducts)
-    .orderBy(cookbookProducts.id);
-
-  for (const row of rows) {
-    console.log(`\n  ${row.name} (id=${row.id})`);
-    console.log(`    Tags:       ${row.tags}`);
-    console.log(`    Categories: ${row.categories}`);
-    console.log(`    Rankings:   ${row.rankings}`);
-    console.log(`    Price:      $${row.price}`);
-  }
-}
-
-async function queryWithFilter(db) {
-  console.log("\n\n=== Filter: Products with 'electronics' tag ===");
+  // Select scalar columns only (collection columns are not fully decoded by node-cubrid)
   const rows = await db.execute(
-    sql`SELECT name, tags, price FROM cookbook_products WHERE 'electronics' IN tags`,
+    sql`SELECT id, name, price FROM cookbook_products ORDER BY id`,
   );
 
   for (const row of rows) {
-    console.log(`  ${row.name} — $${row.price}`);
+    console.log(`  ${row.name} (id=${row.id}) — $${Number(row.price).toFixed(2)}`);
   }
+}
+
+async function queryWithSetFilter(db) {
+  console.log("\n=== Filter: Products with 'electronics' tag ===");
+  const rows = await db.execute(
+    sql`SELECT name, price FROM cookbook_products WHERE 'electronics' IN tags`,
+  );
+
+  for (const row of rows) {
+    console.log(`  ${row.name} — $${Number(row.price).toFixed(2)}`);
+  }
+}
+
+async function queryWithMultipleFilters(db) {
+  console.log("\n=== Filter: Products with 'office' category ===");
+  const rows = await db.execute(
+    sql`SELECT name, price FROM cookbook_products WHERE 'office' IN categories`,
+  );
+
+  for (const row of rows) {
+    console.log(`  ${row.name} — $${Number(row.price).toFixed(2)}`);
+  }
+}
+
+async function modifyCollection(db) {
+  console.log("\n=== Modify Collection ===");
+
+  // Add element to SET
+  await db.execute(
+    sql`UPDATE cookbook_products SET tags = tags + {'discounted'} WHERE name = 'Laptop'`,
+  );
+  console.log("  ✓ Added 'discounted' tag to Laptop");
+
+  // Remove element from SET
+  await db.execute(
+    sql`UPDATE cookbook_products SET tags = tags - {'portable'} WHERE name = 'Laptop'`,
+  );
+  console.log("  ✓ Removed 'portable' tag from Laptop");
+
+  // Verify filter still works
+  const rows = await db.execute(
+    sql`SELECT name FROM cookbook_products WHERE 'discounted' IN tags`,
+  );
+  console.log(`  Products with 'discounted' tag: ${rows.map((r) => r.name).join(", ")}`);
 }
 
 async function cleanup(db) {
@@ -102,7 +124,9 @@ async function main() {
     await setup(db);
     await insertProducts(db);
     await queryProducts(db);
-    await queryWithFilter(db);
+    await queryWithSetFilter(db);
+    await queryWithMultipleFilters(db);
+    await modifyCollection(db);
   } finally {
     await cleanup(db);
     await client.close();

@@ -72,7 +72,7 @@ def cursor_description() -> None:
     )
 
     cursor = conn.cursor()
-    cursor.execute("SELECT 1 AS id, 'hello' AS name, CAST(3.14 AS DOUBLE) AS value")
+    cursor.execute("SELECT 1 AS id, 'hello' AS name, CAST(3.14 AS DOUBLE) AS val")
 
     # cursor.description: list of (name, type_code, display_size, internal_size,
     #                               precision, scale, null_ok)

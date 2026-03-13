@@ -170,12 +170,12 @@ def aggregate_queries(conn: pycubrid.Connection) -> None:
 
     cursor.execute("""
         SELECT category,
-               COUNT(*) AS count,
+               COUNT(*) AS cnt,
                CAST(AVG(price) AS DOUBLE) AS avg_price,
                CAST(SUM(stock) AS INT) AS total_stock
         FROM cookbook_products
         GROUP BY category
-        ORDER BY count DESC
+        ORDER BY cnt DESC
     """)
 
     print(f"  {'Category':15s}  {'Count':>5s}  {'Avg Price':>10s}  {'Stock':>6s}")

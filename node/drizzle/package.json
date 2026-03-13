@@ -13,8 +13,8 @@
     "04": "node 04_custom_types.js"
   },
   "dependencies": {
-    "cubrid-client": "^0.1.0",
-    "drizzle-cubrid": "^0.1.0",
+    "cubrid-client": "file:../../../cubrid-client",
+    "drizzle-cubrid": "file:../../../drizzle-cubrid",
     "drizzle-orm": "^0.38.0"
   }
 }
