@@ -109,7 +109,10 @@ def url_formats() -> None:
 
     urls = [
         ("pycubrid (pure Python)", "cubrid+pycubrid://dba@localhost:33000/testdb"),
-        ("pycubrid with password", "cubrid+pycubrid://dba:password@localhost:33000/testdb"),
+        (
+            "pycubrid with password",
+            "cubrid+pycubrid://dba:password@localhost:33000/testdb",
+        ),
         ("CUBRIDdb (C extension)", "cubrid://dba@localhost:33000/testdb"),
         ("CUBRIDdb with password", "cubrid://dba:password@localhost:33000/testdb"),
     ]

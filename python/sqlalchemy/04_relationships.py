@@ -70,7 +70,9 @@ class Course(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     title: Mapped[str] = mapped_column(String(200))
     credits: Mapped[int] = mapped_column(default=3)
-    professor_id: Mapped[int | None] = mapped_column(ForeignKey("cookbook_professors.id"))
+    professor_id: Mapped[int | None] = mapped_column(
+        ForeignKey("cookbook_professors.id")
+    )
 
     # Many-to-one: Course belongs to Professor
     professor: Mapped[Professor | None] = relationship(back_populates="courses")
@@ -137,7 +139,9 @@ def seed_data(engine) -> None:
         ml.students.extend([bob, charlie])
         calc.students.extend([alice])
 
-        session.add_all([cs, math, prof_a, prof_b, prof_c, algo, db, ml, calc, alice, bob, charlie])
+        session.add_all(
+            [cs, math, prof_a, prof_b, prof_c, algo, db, ml, calc, alice, bob, charlie]
+        )
         session.commit()
         print("  ✓ Seeded 2 departments, 3 professors, 4 courses, 3 students")
 
@@ -178,7 +182,9 @@ def many_to_many(engine) -> None:
         print("  Course enrollments:")
         for course in courses:
             students = ", ".join(s.name for s in course.students) or "none"
-            print(f"    {course.title:25s}  ({len(course.students)} students): {students}")
+            print(
+                f"    {course.title:25s}  ({len(course.students)} students): {students}"
+            )
 
         # Student → Courses
         print("\n  Student schedules:")
@@ -187,7 +193,9 @@ def many_to_many(engine) -> None:
 
         for student in students:
             courses_str = ", ".join(c.title for c in student.courses) or "none"
-            print(f"    {student.name:10s}  ({len(student.courses)} courses): {courses_str}")
+            print(
+                f"    {student.name:10s}  ({len(student.courses)} courses): {courses_str}"
+            )
 
 
 def eager_loading(engine) -> None:
@@ -211,7 +219,9 @@ def eager_loading(engine) -> None:
         for course in courses:
             prof_name = course.professor.name if course.professor else "TBD"
             student_count = len(course.students)
-            print(f"    {course.title:25s}  Prof: {prof_name:15s}  Students: {student_count}")
+            print(
+                f"    {course.title:25s}  Prof: {prof_name:15s}  Students: {student_count}"
+            )
 
 
 def cleanup(engine) -> None:

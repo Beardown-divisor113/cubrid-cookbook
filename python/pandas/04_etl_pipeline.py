@@ -48,7 +48,14 @@ def transform(df: pd.DataFrame):
     cleaned = cast(
         pd.DataFrame,
         cleaned.dropna(
-            subset=["sale_date", "product", "category", "region", "quantity", "unit_price"]
+            subset=[
+                "sale_date",
+                "product",
+                "category",
+                "region",
+                "quantity",
+                "unit_price",
+            ]
         ),
     )
     cleaned = cast(
@@ -70,16 +77,24 @@ def transform(df: pd.DataFrame):
             avg_unit_price=("unit_price", "mean"),
         ),
     )
-    summary = summary.assign(avg_order_quantity=summary["total_quantity"] / summary["total_orders"])
+    summary = summary.assign(
+        avg_order_quantity=summary["total_quantity"] / summary["total_orders"]
+    )
 
-    logging.info("Transformed data: %d cleaned rows, %d summary rows.", len(cleaned), len(summary))
+    logging.info(
+        "Transformed data: %d cleaned rows, %d summary rows.",
+        len(cleaned),
+        len(summary),
+    )
     return cast(pd.DataFrame, cleaned), cast(pd.DataFrame, summary)
 
 
 def load(engine, cleaned: pd.DataFrame, summary: pd.DataFrame) -> None:
     cleaned.to_sql(CLEAN_TABLE, engine, if_exists="replace", index=False)
     summary.to_sql(SUMMARY_TABLE, engine, if_exists="replace", index=False)
-    logging.info("Loaded cleaned table '%s' and summary table '%s'.", CLEAN_TABLE, SUMMARY_TABLE)
+    logging.info(
+        "Loaded cleaned table '%s' and summary table '%s'.", CLEAN_TABLE, SUMMARY_TABLE
+    )
 
 
 def main() -> int:

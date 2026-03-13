@@ -43,7 +43,9 @@ def aggregate_sales(
     end_dt = datetime.fromisoformat(end_date) if end_date else None
 
     with session_scope() as session:
-        stmt = select(func.count(SalesRecord.id), func.coalesce(func.sum(SalesRecord.amount), 0))
+        stmt = select(
+            func.count(SalesRecord.id), func.coalesce(func.sum(SalesRecord.amount), 0)
+        )
         if start_dt is not None:
             stmt = stmt.where(SalesRecord.created_at >= start_dt)
         if end_dt is not None:
@@ -96,12 +98,20 @@ def cleanup_old_records(days: int = 30) -> dict[str, int]:
     threshold = datetime.now(timezone.utc) - timedelta(days=days)
 
     with session_scope() as session:
-        old_jobs = session.execute(
-            select(Job.id).where(Job.completed_at.is_not(None)).where(Job.completed_at < threshold)
-        ).scalars().all()
-        old_reports = session.execute(
-            select(Report.id).where(Report.created_at < threshold)
-        ).scalars().all()
+        old_jobs = (
+            session.execute(
+                select(Job.id)
+                .where(Job.completed_at.is_not(None))
+                .where(Job.completed_at < threshold)
+            )
+            .scalars()
+            .all()
+        )
+        old_reports = (
+            session.execute(select(Report.id).where(Report.created_at < threshold))
+            .scalars()
+            .all()
+        )
 
         deleted_jobs = len(old_jobs)
         deleted_reports = len(old_reports)
@@ -118,6 +128,9 @@ def cleanup_old_records(days: int = 30) -> dict[str, int]:
     _finish_job(
         job_id,
         "SUCCESS",
-        {"deleted_jobs": result["deleted_jobs"], "deleted_reports": result["deleted_reports"]},
+        {
+            "deleted_jobs": result["deleted_jobs"],
+            "deleted_reports": result["deleted_reports"],
+        },
     )
     return result

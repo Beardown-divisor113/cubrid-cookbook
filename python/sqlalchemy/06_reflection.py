@@ -54,7 +54,9 @@ def setup(engine) -> None:
 
     # Add an index
     with engine.begin() as conn:
-        conn.execute(text("CREATE INDEX idx_articles_views ON cookbook_ref_articles (views)"))
+        conn.execute(
+            text("CREATE INDEX idx_articles_views ON cookbook_ref_articles (views)")
+        )
 
     print("  ✓ Created tables with FK and index")
 
@@ -85,7 +87,9 @@ def reflect_columns(engine) -> None:
             nullable = "Yes" if col.get("nullable", True) else "No"
             default = str(col.get("default", "")) or ""
             col_type = str(col["type"])
-            print(f"    {col['name']:15s}  {col_type:20s}  {nullable:>8s}  {default:>10s}")
+            print(
+                f"    {col['name']:15s}  {col_type:20s}  {nullable:>8s}  {default:>10s}"
+            )
 
 
 def reflect_constraints(engine) -> None:
@@ -102,7 +106,9 @@ def reflect_constraints(engine) -> None:
     fks = insp.get_foreign_keys("cookbook_ref_articles")
     print("\n  Foreign keys on cookbook_ref_articles:")
     for fk in fks:
-        print(f"    {fk['constrained_columns']} → {fk['referred_table']}.{fk['referred_columns']}")
+        print(
+            f"    {fk['constrained_columns']} → {fk['referred_table']}.{fk['referred_columns']}"
+        )
 
 
 def reflect_indexes(engine) -> None:

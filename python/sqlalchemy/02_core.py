@@ -76,11 +76,36 @@ def insert_data(engine) -> None:
         conn.execute(
             insert(employees),
             [
-                {"name": "Alice", "email": "alice@company.com", "salary": 95000, "dept_id": 1},
-                {"name": "Bob", "email": "bob@company.com", "salary": 85000, "dept_id": 1},
-                {"name": "Charlie", "email": "charlie@company.com", "salary": 75000, "dept_id": 2},
-                {"name": "Diana", "email": "diana@company.com", "salary": 90000, "dept_id": 2},
-                {"name": "Eve", "email": "eve@company.com", "salary": 80000, "dept_id": 3},
+                {
+                    "name": "Alice",
+                    "email": "alice@company.com",
+                    "salary": 95000,
+                    "dept_id": 1,
+                },
+                {
+                    "name": "Bob",
+                    "email": "bob@company.com",
+                    "salary": 85000,
+                    "dept_id": 1,
+                },
+                {
+                    "name": "Charlie",
+                    "email": "charlie@company.com",
+                    "salary": 75000,
+                    "dept_id": 2,
+                },
+                {
+                    "name": "Diana",
+                    "email": "diana@company.com",
+                    "salary": 90000,
+                    "dept_id": 2,
+                },
+                {
+                    "name": "Eve",
+                    "email": "eve@company.com",
+                    "salary": 80000,
+                    "dept_id": 3,
+                },
             ],
         )
         print("  ✓ Inserted 5 employees")
@@ -99,7 +124,9 @@ def select_basic(engine) -> None:
 
         # Select with filter
         stmt = (
-            select(employees).where(employees.c.salary >= 85000).order_by(employees.c.salary.desc())
+            select(employees)
+            .where(employees.c.salary >= 85000)
+            .order_by(employees.c.salary.desc())
         )
         result = conn.execute(stmt)
         print("\n  High earners (>= $85k):")
@@ -118,7 +145,9 @@ def select_with_join(engine) -> None:
                 departments.c.name.label("department"),
                 employees.c.salary,
             )
-            .select_from(employees.join(departments, employees.c.dept_id == departments.c.id))
+            .select_from(
+                employees.join(departments, employees.c.dept_id == departments.c.id)
+            )
             .order_by(employees.c.name)
         )
         result = conn.execute(stmt)
@@ -141,18 +170,28 @@ def aggregation(engine) -> None:
                 func.avg(employees.c.salary).label("avg_salary"),
                 func.sum(employees.c.salary).label("total_salary"),
             )
-            .select_from(departments.outerjoin(employees, departments.c.id == employees.c.dept_id))
+            .select_from(
+                departments.outerjoin(
+                    employees, departments.c.id == employees.c.dept_id
+                )
+            )
             .group_by(departments.c.name)
             .order_by(func.count(employees.c.id).desc())
         )
         result = conn.execute(stmt)
 
-        print(f"  {'Department':15s}  {'Count':>5s}  {'Avg Salary':>12s}  {'Total':>12s}")
-        print(f"  {'----------':15s}  {'-----':>5s}  {'----------':>12s}  {'-----':>12s}")
+        print(
+            f"  {'Department':15s}  {'Count':>5s}  {'Avg Salary':>12s}  {'Total':>12s}"
+        )
+        print(
+            f"  {'----------':15s}  {'-----':>5s}  {'----------':>12s}  {'-----':>12s}"
+        )
         for row in result:
             avg = row.avg_salary or 0
             total = row.total_salary or 0
-            print(f"  {row.name:15s}  {row.headcount:5d}  ${avg:>11,.0f}  ${total:>11,.0f}")
+            print(
+                f"  {row.name:15s}  {row.headcount:5d}  ${avg:>11,.0f}  ${total:>11,.0f}"
+            )
 
 
 def raw_sql(engine) -> None:
@@ -191,7 +230,9 @@ def update_and_delete(engine) -> None:
         print(f"  ✓ Gave Engineering 10% raise ({result.rowcount} rows)")
 
         # Verify
-        stmt = select(employees.c.name, employees.c.salary).where(employees.c.dept_id == 1)
+        stmt = select(employees.c.name, employees.c.salary).where(
+            employees.c.dept_id == 1
+        )
         result = conn.execute(stmt)
         for row in result:
             print(f"    {row.name:10s}  ${row.salary:,.0f}")

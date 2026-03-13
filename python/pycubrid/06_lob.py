@@ -10,7 +10,6 @@ Demonstrates:
 from __future__ import annotations
 
 import pycubrid
-from pycubrid.constants import CUBRIDDataType
 from pycubrid.lob import Lob
 
 DB_CONFIG = {
@@ -66,7 +65,10 @@ def clob_example(conn: pycubrid.Connection) -> None:
 
     # Insert text documents — strings can be inserted directly into CLOB columns
     documents = [
-        ("README", "# CUBRID Cookbook\n\nA collection of examples for CUBRID database."),
+        (
+            "README",
+            "# CUBRID Cookbook\n\nA collection of examples for CUBRID database.",
+        ),
         ("License", "Apache License 2.0\n\nCopyright 2026 cubrid-labs"),
         (
             "Long Text",

@@ -73,7 +73,12 @@ def connection_error_example() -> None:
     # Wrong port
     try:
         pycubrid.connect(host="localhost", port=44444, database="testdb")
-    except (pycubrid.OperationalError, pycubrid.InterfaceError, OSError, ConnectionRefusedError) as e:
+    except (
+        pycubrid.OperationalError,
+        pycubrid.InterfaceError,
+        OSError,
+        ConnectionRefusedError,
+    ) as e:
         print(f"  ✓ Caught connection error (bad port): {type(e).__name__}: {e}")
 
 
@@ -110,14 +115,18 @@ def integrity_error_example() -> None:
 
     # Duplicate primary key
     try:
-        cursor.execute("INSERT INTO cookbook_err_test (id, email) VALUES (1, 'b@test.com')")
+        cursor.execute(
+            "INSERT INTO cookbook_err_test (id, email) VALUES (1, 'b@test.com')"
+        )
     except pycubrid.IntegrityError as e:
         conn.rollback()
         print(f"  ✓ Caught IntegrityError (duplicate PK): {e}")
 
     # Duplicate unique constraint
     try:
-        cursor.execute("INSERT INTO cookbook_err_test (id, email) VALUES (2, 'a@test.com')")
+        cursor.execute(
+            "INSERT INTO cookbook_err_test (id, email) VALUES (2, 'a@test.com')"
+        )
     except pycubrid.IntegrityError as e:
         conn.rollback()
         print(f"  ✓ Caught IntegrityError (duplicate UNIQUE): {e}")

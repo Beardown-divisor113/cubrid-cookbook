@@ -36,7 +36,9 @@ app.add_middleware(
 
 
 @app.exception_handler(RequestValidationError)
-def validation_exception_handler(_request: Request, exc: RequestValidationError) -> JSONResponse:
+def validation_exception_handler(
+    _request: Request, exc: RequestValidationError
+) -> JSONResponse:
     return JSONResponse(
         status_code=422,
         content={"detail": exc.errors(), "message": "Validation failed"},

@@ -33,9 +33,15 @@ def seed_sales_data() -> None:
 
         session.add_all(
             [
-                SalesRecord(product_name="laptop", quantity=2, amount=Decimal("1800.00")),
-                SalesRecord(product_name="monitor", quantity=4, amount=Decimal("900.00")),
-                SalesRecord(product_name="keyboard", quantity=10, amount=Decimal("650.00")),
+                SalesRecord(
+                    product_name="laptop", quantity=2, amount=Decimal("1800.00")
+                ),
+                SalesRecord(
+                    product_name="monitor", quantity=4, amount=Decimal("900.00")
+                ),
+                SalesRecord(
+                    product_name="keyboard", quantity=10, amount=Decimal("650.00")
+                ),
             ]
         )
 
@@ -50,15 +56,18 @@ def print_recent_jobs(limit: int = 10) -> None:
 
         print("\nRecent cookbook_jobs entries:")
         for job in jobs:
-            print(f"- id={job.id} task={job.task_name} status={job.status} result={job.result}")
+            print(
+                f"- id={job.id} task={job.task_name} status={job.status} result={job.result}"
+            )
 
 
 def run_standalone() -> None:
     print("Running in standalone mode (no Redis required)...")
 
-    chain_result = (app.signature("tasks.aggregate_sales") | app.signature(
-        "tasks.generate_report", args=["standalone-sales-report"]
-    )).apply()
+    chain_result = (
+        app.signature("tasks.aggregate_sales")
+        | app.signature("tasks.generate_report", args=["standalone-sales-report"])
+    ).apply()
     print(f"Chained result: {chain_result.get()}")
 
     send_result = send_notification.apply(
@@ -87,9 +96,10 @@ def run_standalone() -> None:
 def run_async() -> None:
     print("Running in async mode (Redis broker + Celery worker required)...")
 
-    chained_async_result = (app.signature("tasks.aggregate_sales") | app.signature(
-        "tasks.generate_report", args=["async-sales-report"]
-    )).apply_async()
+    chained_async_result = (
+        app.signature("tasks.aggregate_sales")
+        | app.signature("tasks.generate_report", args=["async-sales-report"])
+    ).apply_async()
     print(f"Submitted chain task id: {chained_async_result.id}")
 
     send_async_result = send_notification.delay(
