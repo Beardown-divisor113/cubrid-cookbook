@@ -2,10 +2,13 @@
 
 **Production-ready examples for CUBRID across multiple languages.**
 
+<!-- BADGES:START -->
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![CUBRID 11.2](https://img.shields.io/badge/CUBRID-11.2-green.svg)](https://www.cubrid.org/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![Node.js 18+](https://img.shields.io/badge/node-18%2B-brightgreen.svg)](https://nodejs.org/)
+[![GitHub stars](https://img.shields.io/github/stars/cubrid-labs/cubrid-cookbook)](https://github.com/cubrid-labs/cubrid-cookbook)
+<!-- BADGES:END -->
 
 ---
 
