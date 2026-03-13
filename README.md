@@ -7,6 +7,7 @@
 [![CUBRID 11.2](https://img.shields.io/badge/CUBRID-11.2-green.svg)](https://www.cubrid.org/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![Node.js 18+](https://img.shields.io/badge/node-18%2B-brightgreen.svg)](https://nodejs.org/)
+[![Go 1.21+](https://img.shields.io/badge/go-1.21%2B-00ADD8.svg)](https://go.dev)
 [![GitHub stars](https://img.shields.io/github/stars/cubrid-labs/cubrid-cookbook)](https://github.com/cubrid-labs/cubrid-cookbook)
 <!-- BADGES:END -->
 
@@ -38,6 +39,13 @@ Copy-paste friendly, **runnable** examples showing how to use [CUBRID](https://w
 | [cubrid](node/cubrid/) | cubrid-client | Modern Promise-based client — connect, query, CRUD, transactions |
 | [drizzle](node/drizzle/) | Drizzle ORM | Type-safe ORM — schema, query builder, CRUD, transactions, custom types |
 
+### 🐹 Go
+
+| Example | Driver | Description |
+|---------|--------|-------------|
+| [cubrid-go](go/cubrid-go/) | cubrid-go | Pure Go `database/sql` driver — connect, query, CRUD, transactions |
+| [gorm](go/gorm/) | GORM | GORM ORM — AutoMigrate, models, CRUD, relationships, advanced queries |
+
 ## Quick Start
 
 ### 1. Start CUBRID
@@ -64,6 +72,12 @@ npm install
 node 01_connect.js
 ```
 
+**Go:**
+```bash
+cd go/cubrid-go
+go run 01_connect.go
+```
+
 Every example has its own `README.md` with setup instructions.
 
 ### 3. Clean up
@@ -77,7 +91,8 @@ make clean
 - **Docker** and **Docker Compose** (for the CUBRID database)
 - **Python 3.10+** (for Python examples)
 - **Node.js 18+** (for Node.js examples)
-- Each example lists its own dependencies in `requirements.txt` or `package.json`
+- Each example lists its own dependencies in `requirements.txt` or `package.json` or `go.mod`
+- **Go 1.21+** (for Go examples)
 
 ## Project Structure
 
@@ -114,6 +129,18 @@ cubrid-cookbook/
 │       ├── 03_transactions.js
 │       ├── 04_custom_types.js
 │       └── package.json
+├── go/
+│   ├── cubrid-go/             # database/sql driver
+│   │   ├── 01_connect.go
+│   │   ├── 02_crud.go
+│   │   ├── 03_transactions.go
+│   │   └── go.mod
+│   └── gorm/                  # GORM ORM
+│       ├── 01_connect.go
+│       ├── 02_crud.go
+│       ├── 03_relationships.go
+│       ├── 04_advanced.go
+│       └── go.mod
 ```
 
 ## Connection
@@ -154,12 +181,31 @@ const client = createClient({ host: "localhost", port: 33000, database: "testdb"
 const db = drizzle(client);
 ```
 
+**Go (database/sql)**:
+```go
+import (
+    "database/sql"
+    _ "github.com/cubrid-labs/cubrid-go"
+)
+db, _ := sql.Open("cubrid", "cubrid://dba:@localhost:33000/testdb")
+```
+
+**Go (GORM)**:
+```go
+import (
+    "gorm.io/gorm"
+    cubrid "github.com/cubrid-labs/cubrid-go/dialector"
+)
+db, _ := gorm.Open(cubrid.Open("cubrid://dba:@localhost:33000/testdb"), &gorm.Config{})
+```
+
 ## Related Projects
 
 - [pycubrid](https://github.com/cubrid-labs/pycubrid) — Pure Python DB-API 2.0 driver for CUBRID
 - [sqlalchemy-cubrid](https://github.com/cubrid-labs/sqlalchemy-cubrid) — SQLAlchemy 2.0 dialect for CUBRID
 - [cubrid-client](https://github.com/cubrid-labs/cubrid-client) — Modern TypeScript-first Node.js client for CUBRID
 - [drizzle-cubrid](https://github.com/cubrid-labs/drizzle-cubrid) — Drizzle ORM dialect for CUBRID
+- [cubrid-go](https://github.com/cubrid-labs/cubrid-go) — Pure Go CUBRID driver (`database/sql` + GORM)
 - [CUBRID](https://www.cubrid.org/) — The CUBRID database
 
 ## Contributing
