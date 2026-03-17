@@ -16,6 +16,15 @@ Default database URL used by this app:
 
 `cubrid+pycubrid://dba@localhost:33000/testdb`
 
+## Quick Start with Docker
+
+```bash
+cd /data/GitHub/cubrid-cookbook/python/flask
+docker compose up --build
+```
+
+This runs CUBRID and Flask together for local testing.
+
 ## Setup
 
 ```bash
@@ -107,3 +116,9 @@ curl -X DELETE http://localhost:5000/api/products/1
 - **Products list**: responsive table with category, price, stock badge, and action buttons.
 - **Product detail**: card layout with metadata and description.
 - **Create/Edit form**: single Bootstrap form for both modes, with validation feedback through flash messages.
+
+## Error Handling
+
+For focused database error recipes (connection failures, constraint violations, lock/query timeouts), see:
+
+- `/data/GitHub/cubrid-cookbook/python/error-handling/`

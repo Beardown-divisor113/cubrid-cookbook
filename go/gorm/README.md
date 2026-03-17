@@ -26,6 +26,15 @@ make up
 go mod download
 ```
 
+## Quick Start with Docker
+
+```bash
+cd /data/GitHub/cubrid-cookbook/go
+docker compose up --build
+```
+
+This runs CUBRID plus a Go container that executes `go/cubrid-go/01_connect.go`.
+
 ## Examples
 
 | File | Topic | Key Concepts |
@@ -183,6 +192,12 @@ Running `03_transactions.go`:
 | `missing go.sum entry` | Run `go mod download` in this directory |
 | `Error 1265: Data truncated` | Check struct field types and tags against table definitions |
 | `duplicate key` errors on rerun | Ensure cleanup succeeds or drop tables manually |
+
+## Error Handling
+
+For focused `errors.Is` / `errors.As` patterns with `cubrid-go`, see:
+
+- `/data/GitHub/cubrid-cookbook/go/error-handling/`
 
 ## Learn More
 

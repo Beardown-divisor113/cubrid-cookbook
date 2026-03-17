@@ -26,6 +26,15 @@ make up
 cargo build
 ```
 
+## Quick Start with Docker
+
+```bash
+cd /data/GitHub/cubrid-cookbook
+make up
+cd rust/sea-orm-cubrid
+cargo run --bin 01_connect
+```
+
 ## Examples
 
 | File | Topic | Key Concepts |
@@ -45,6 +54,12 @@ cargo run --bin 02_crud
 ```text
 cubrid://dba:@localhost:33000/testdb
 ```
+
+## Error Handling
+
+For focused Rust error-handling recipes (connection failure, constraint violation, lock timeout), see:
+
+- `/data/GitHub/cubrid-cookbook/rust/error-handling/`
 
 ## Learn More
 

@@ -134,6 +134,15 @@ def raw_sql_examples(request):
    python manage.py runserver
    ```
 
+## Quick Start with Docker
+
+```bash
+cd /data/GitHub/cubrid-cookbook/python/django
+docker compose up --build
+```
+
+This runs CUBRID and Django together for local testing.
+
 ## Routes
 
 | URL | View | Pattern |
@@ -168,3 +177,9 @@ def raw_sql_examples(request):
 | Django migration errors | These only affect SQLite tables — CUBRID tables are managed by SQLAlchemy |
 | Template not found | Run from the `django/` directory: `python manage.py runserver` |
 | `?` params not binding | Pass params as a tuple: `cursor.execute(sql, (value,))` |
+
+## Error Handling
+
+For focused database error recipes (connection failures, constraint violations, lock/query timeouts), see:
+
+- `/data/GitHub/cubrid-cookbook/python/error-handling/`

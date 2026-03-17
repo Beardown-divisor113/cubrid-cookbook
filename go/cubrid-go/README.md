@@ -27,6 +27,15 @@ make up
 go mod download
 ```
 
+## Quick Start with Docker
+
+```bash
+cd /data/GitHub/cubrid-cookbook/go
+docker compose up --build
+```
+
+This runs CUBRID plus a Go container that executes `01_connect.go`.
+
 ## Examples
 
 | File | Topic | Key Concepts |
@@ -153,6 +162,12 @@ Running `03_transactions.go`:
 | Connection refused to `localhost:33000` | Ensure CUBRID is running: `make up` from repo root |
 | `UNIQUE violation` on `email` | Use unique values or update existing rows instead of inserting duplicates |
 | Query parameters not binding | Use `?` placeholders and pass parameters as extra arguments |
+
+## Error Handling
+
+For focused `errors.Is` / `errors.As` patterns with `cubrid-go`, see:
+
+- `/data/GitHub/cubrid-cookbook/go/error-handling/`
 
 ## Learn More
 

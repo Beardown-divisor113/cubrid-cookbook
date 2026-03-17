@@ -1,6 +1,6 @@
 # CUBRID Cookbook 🍳
 
-**Production-ready examples for using CUBRID with Python, Node.js, Go, and Rust** — SQLAlchemy, FastAPI, Django, Flask, Drizzle ORM, GORM, SeaORM, and more.
+**Production-ready examples for using CUBRID with Python, TypeScript, Node.js, Go, and Rust** — SQLAlchemy, FastAPI, Django, Flask, Drizzle ORM, GORM, SeaORM, and more.
 
 <!-- BADGES:START -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -43,6 +43,12 @@ Copy-paste friendly, **runnable** examples showing how to use [CUBRID](https://w
 | [cubrid](node/cubrid/) | cubrid-client | Modern Promise-based client — connect, query, CRUD, transactions |
 | [drizzle](node/drizzle/) | Drizzle ORM | Type-safe ORM — schema, query builder, CRUD, transactions, custom types |
 
+### 🟦 TypeScript
+
+| Example | Driver | Description |
+|---------|--------|-------------|
+| [typescript](typescript/) | cubrid-client | TypeScript scripts + focused error handling patterns |
+
 ### 🐹 Go
 
 | Example | Driver | Description |
@@ -83,6 +89,13 @@ npm install
 node 01_connect.js
 ```
 
+**TypeScript:**
+```bash
+cd typescript
+npm install
+npm run connect
+```
+
 **Go:**
 ```bash
 cd go/cubrid-go
@@ -108,6 +121,7 @@ make clean
 - **Docker** and **Docker Compose** (for the CUBRID database)
 - **Python 3.10+** (for Python examples)
 - **Node.js 18+** (for Node.js examples)
+- **TypeScript 5+** (for TypeScript examples)
 - **Go 1.21+** (for Go examples)
 - **Rust 1.70+** (for Rust examples)
 - Each example lists its own dependencies in `requirements.txt`, `package.json`, `go.mod`, or `Cargo.toml`
@@ -121,57 +135,40 @@ cubrid-cookbook/
 ├── Makefile                    # Docker shortcuts
 ├── python/
 │   ├── pycubrid/               # Direct driver usage
-│   │   ├── 01_connect.py
-│   │   ├── 02_crud.py
-│   │   ├── 03_transactions.py
-│   │   ├── 04_prepared.py
-│   │   ├── 05_error_handling.py
-│   │   ├── 06_lob.py
-│   │   └── requirements.txt
 │   ├── sqlalchemy/             # SQLAlchemy Core + ORM
 │   ├── fastapi/                # FastAPI REST API
 │   ├── django/                 # Django integration
 │   ├── flask/                  # Flask + Flask-SQLAlchemy
 │   ├── pandas/                 # Data analysis
 │   ├── streamlit/              # Data dashboard
-│   └── celery/                 # Async tasks
+│   ├── celery/                 # Async tasks
+│   └── error-handling/         # Focused Python error patterns
+├── typescript/                 # TypeScript examples + Docker setup
+│   ├── 01_connect.ts
+│   ├── docker-compose.yml
+│   ├── Dockerfile
+│   └── error-handling/
 ├── node/
 │   ├── cubrid/                 # cubrid-client direct usage
-│   │   ├── 01_connect.js
-│   │   ├── 02_crud.js
-│   │   ├── 03_transactions.js
-│   │   └── package.json
 │   └── drizzle/                # Drizzle ORM + cubrid-client
-│       ├── 01_connect.js
-│       ├── 02_crud.js
-│       ├── 03_transactions.js
-│       ├── 04_custom_types.js
-│       └── package.json
 ├── go/
-│   ├── cubrid-go/             # database/sql driver
-│   │   ├── 01_connect.go
-│   │   ├── 02_crud.go
-│   │   ├── 03_transactions.go
-│   │   └── go.mod
-│   └── gorm/                  # GORM ORM
-│       ├── 01_connect.go
-│       ├── 02_crud.go
-│       ├── 03_relationships.go
-│       ├── 04_advanced.go
-│       └── go.mod
+│   ├── cubrid-go/              # database/sql driver
+│   ├── gorm/                   # GORM ORM
+│   └── error-handling/        # Focused Go error patterns
 ├── rust/
-│   ├── cubrid-rs/             # Native Rust async driver
-│   │   ├── 01_connect.rs
-│   │   ├── 02_crud.rs
-│   │   ├── 03_transactions.rs
-│   │   ├── Cargo.toml
-│   │   └── README.md
-│   └── sea-orm-cubrid/        # SeaORM backend for CUBRID
-│       ├── 01_connect.rs
-│       ├── 02_crud.rs
-│       ├── Cargo.toml
-│       └── README.md
+│   ├── cubrid-rs/              # Native Rust async driver
+│   ├── sea-orm-cubrid/         # SeaORM backend for CUBRID
+│   └── error-handling/         # Focused Rust error patterns
 ```
+
+## Error Handling Cookbook
+
+Language-focused error handling examples are available in:
+
+- `python/error-handling/` - `pycubrid` exceptions (`OperationalError`, `IntegrityError`, timeout handling)
+- `typescript/error-handling/` - `try/catch` patterns for `ConnectionError` and `QueryError`
+- `go/error-handling/` - `errors.Is` and `errors.As` with `cubrid-go` error types
+- `rust/error-handling/` - async error handling patterns with `cubrid-tokio`
 
 ## Connection
 

@@ -37,6 +37,15 @@ python/fastapi/
 
 The root project Docker Compose already provides CUBRID. Start it from the repository root if needed.
 
+## Quick Start with Docker
+
+```bash
+cd /data/GitHub/cubrid-cookbook/python/fastapi
+docker compose up --build
+```
+
+This runs CUBRID and FastAPI together for local testing.
+
 ## Setup
 
 ```bash
@@ -124,3 +133,9 @@ curl -X DELETE "http://127.0.0.1:8000/tasks/1"
 
 - Swagger UI: `http://127.0.0.1:8000/docs`
 - ReDoc: `http://127.0.0.1:8000/redoc`
+
+## Error Handling
+
+For focused database error recipes (connection failures, constraint violations, lock/query timeouts), see:
+
+- `/data/GitHub/cubrid-cookbook/python/error-handling/`
