@@ -279,7 +279,7 @@ func main() {
 | ACID transactions | ✅ | ✅ | ✅ |
 | MVCC | ✅ | ✅ (InnoDB) | ✅ |
 | Collection types (SET) | ✅ Native | ❌ | ✅ (ARRAY) |
-| JSON support | ❌ | ✅ | ✅ |
+| JSON support | ✅ (10.2+) | ✅ | ✅ |
 | Window functions | ✅ | ✅ (8.0+) | ✅ |
 | Docker image | ✅ `cubrid/cubrid` | ✅ | ✅ |
 | Default port | 33000 | 3306 | 5432 |
