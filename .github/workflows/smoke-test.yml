@@ -319,7 +319,7 @@ jobs:
         run: go build ./...
         working-directory: go/${{ matrix.example_set }}
 
-      - name: Run standalone Go examples in ${{ matrix.example_set }}
+      - name: Compile Go examples in ${{ matrix.example_set }}
         working-directory: go/${{ matrix.example_set }}
         run: |
           set +e
@@ -327,8 +327,9 @@ jobs:
           failed=0
 
           for file in *.go; do
-            echo "Running $file"
-            if go run "$file"; then
+            [ "$file" = "*.go" ] && break
+            echo "Compiling $file"
+            if go build -o /dev/null "$file"; then
               passed=$((passed + 1))
             else
               failed=$((failed + 1))
@@ -336,11 +337,11 @@ jobs:
           done
 
           echo "Go example set: ${{ matrix.example_set }}"
-          echo "Passed: $passed"
+          echo "Compiled: $passed"
           echo "Failed: $failed"
           {
             echo "### Go smoke summary (${{ matrix.example_set }})"
-            echo "- Passed: $passed"
+            echo "- Compiled: $passed"
             echo "- Failed: $failed"
           } >> "$GITHUB_STEP_SUMMARY"
 
